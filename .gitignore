@@ -15,3 +15,5 @@ BuildingEscape/Content/StarterContent/
 *.VC.db
 *.VC.opendb
 BuildingEscape/.vs/BuildingEscape/v15/ipch/
+*.VC.db-shm
+*.VC.db-wal
