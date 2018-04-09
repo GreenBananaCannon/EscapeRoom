@@ -9,6 +9,10 @@ public class BuildingEscapeEditorTarget : TargetRules
 	{
 		Type = TargetType.Editor;
 
+        //Enable when its necessary to find a missing include
+        //bUseUnityBuild = false;
+        //bUsePCHFFiles = false;
+
 		ExtraModuleNames.AddRange( new string[] { "BuildingEscape" } );
 	}
 }
