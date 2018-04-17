@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "DrawDebugHelpers.h"
+#include "Components/InputComponent.h"
 #include "PhysicsEngine/PhysicsHandleComponent.h"
 #include "Grabber.generated.h"
 
@@ -30,5 +31,10 @@ private:
 	float Reach = 100.f; // how far ahead of the player can we reach
 
 	UPhysicsHandleComponent* PhysicsHandle = nullptr;
+
+	UInputComponent* InputComponent = nullptr;
+
+	// Ray-cast and grab what is in reach
+	void Grab();
 	
 };
