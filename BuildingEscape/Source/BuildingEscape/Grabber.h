@@ -18,13 +18,15 @@ public:
 	// Sets default values for this component's properties
 	UGrabber();
 
+
 protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;
 
-public:	
+public:
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
+
 
 private:
 
@@ -36,5 +38,17 @@ private:
 
 	// Ray-cast and grab what is in reach
 	void Grab();
+
+	// call when grab is released
+	void Release();
 	
+	// find attached physics component
+	void FindPhysicsHandleComponent();
+
+	// set up assumed attached input component
+	void SetupInputComponent();
+
+	// Return hit for first physics body in reach
+	 FHitResult GetFirstPhysicsBodyInReach() const;
+
 };
