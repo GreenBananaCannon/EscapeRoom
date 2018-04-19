@@ -9,10 +9,10 @@
 #include "Grabber.generated.h"
 
 
-struct FPlayerViewPointInfo
+struct FGrabbedObjectVectors
 {
-	FVector Location;
-	FRotator Rotation;
+	FVector StartLocation;
+	FVector EndLocation;
 };
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
@@ -57,8 +57,7 @@ private:
 	// Return hit for first physics body in reach
 	 FHitResult GetFirstPhysicsBodyInReach() const;
 
-	 FPlayerViewPointInfo GetPlayerViewPointInfo() const;
-
-	 FVector GetLineTraceEnd(FPlayerViewPointInfo) const;
+	 // return the view point info for current frame
+	 FGrabbedObjectVectors GetGrabbedObjectVectors() const;
 
 };
