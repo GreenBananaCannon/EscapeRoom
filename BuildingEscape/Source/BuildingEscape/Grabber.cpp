@@ -60,10 +60,11 @@ void UGrabber::Grab()
 	if (ActorHit)
 	{
 		if (!PhysicsHandle) { return; }
-		PhysicsHandle->GrabComponentAtLocation(
+		PhysicsHandle->GrabComponent(
 			ComponentToGrab, 
 			NAME_None, // no bones needed
-			ComponentToGrab->GetOwner()->GetActorLocation()
+			ComponentToGrab->GetOwner()->GetActorLocation(),
+			true
 		);
 	}
 }
@@ -71,7 +72,14 @@ void UGrabber::Grab()
 void UGrabber::Release()
 {
 	if (!PhysicsHandle) { return; }
+	if (!PhysicsHandle->GetGrabbedComponent()) { return; }
+	PhysicsHandle->GetGrabbedComponent()->AddImpulse(
+		GetGrabbedObjectVectors().EndLocation * 20.f,
+		NAME_None,
+		false
+	);
 	PhysicsHandle->ReleaseComponent();
+	
 }
 
 void UGrabber::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
