@@ -57,7 +57,7 @@ float UOpenDoor::GetTotalMassOfActorsOnPlate()
 		//UE_LOG(LogTemp, Warning, TEXT("Found %s on trigger"), *Actor->GetName());
 		TotalMass += Actor->FindComponentByClass<UPrimitiveComponent>()->GetMass();
 	}
-	UE_LOG(LogTemp, Warning, TEXT("Weight on plate is: %6.f"), TotalMass)
+	//UE_LOG(LogTemp, Warning, TEXT("Weight on plate is: %6.f"), TotalMass)
 
 	return TotalMass;
 }

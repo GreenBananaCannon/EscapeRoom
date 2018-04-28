@@ -43,6 +43,7 @@ void UGrabber::SetupInputComponent()
 	{
 		InputComponent->BindAction("Grab", IE_Pressed, this, &UGrabber::Grab);
 		InputComponent->BindAction("Grab", IE_Released, this, &UGrabber::Release);
+		InputComponent->BindAction("Shoot", IE_Pressed, this, &UGrabber::Shoot);
 	}
 	else
 	{
@@ -71,15 +72,20 @@ void UGrabber::Grab()
 
 void UGrabber::Release()
 {
+	PhysicsHandle->ReleaseComponent();	
+}
+
+void UGrabber::Shoot()
+{
 	if (!PhysicsHandle) { return; }
 	if (!PhysicsHandle->GetGrabbedComponent()) { return; }
+	// Shoot grabbed object in the direction the camera is facing
 	PhysicsHandle->GetGrabbedComponent()->AddImpulse(
-		GetGrabbedObjectVectors().EndLocation * 20.f,
+		GetGrabbedObjectVectors().PlayerViewPointRotation.Vector() * Power,
 		NAME_None,
 		false
 	);
-	PhysicsHandle->ReleaseComponent();
-	
+	Release();
 }
 
 void UGrabber::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
@@ -119,5 +125,5 @@ FGrabbedObjectVectors UGrabber::GetGrabbedObjectVectors() const
 		OUT PlayerViewPointRotation
 	);
 	FVector EndLocation = StartLocation + PlayerViewPointRotation.Vector() * Reach;
-	return {StartLocation,EndLocation};
+	return {StartLocation,EndLocation,PlayerViewPointRotation};
 }

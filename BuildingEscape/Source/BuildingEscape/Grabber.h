@@ -13,6 +13,7 @@ struct FGrabbedObjectVectors
 {
 	FVector StartLocation;
 	FVector EndLocation;
+	FRotator PlayerViewPointRotation;
 };
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
@@ -38,6 +39,8 @@ private:
 
 	float Reach = 100.f; // how far ahead of the player can we reach
 
+	float Power = 10000.f; // how strong the players shot is
+
 	UPhysicsHandleComponent* PhysicsHandle = nullptr;
 
 	UInputComponent* InputComponent = nullptr;
@@ -47,6 +50,9 @@ private:
 
 	// call when grab is released
 	void Release();
+
+	// shoot currently grabbed object
+	void Shoot();
 	
 	// find attached physics component
 	void FindPhysicsHandleComponent();
