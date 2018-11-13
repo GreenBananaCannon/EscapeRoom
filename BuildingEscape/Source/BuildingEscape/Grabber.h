@@ -39,7 +39,7 @@ private:
 
 	float Reach = 100.f; // how far ahead of the player can we reach
 
-	float Power = 10000.f; // how strong the players shot is
+	float Power = 20000.f; // how strong the players shot is
 
 	UPhysicsHandleComponent* PhysicsHandle = nullptr;
 
