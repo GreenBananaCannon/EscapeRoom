@@ -43,6 +43,4 @@ private:
 
 	// returns a total mass in Kg
 	float GetTotalMassOfActorsOnPlate();
-
-	
 };
